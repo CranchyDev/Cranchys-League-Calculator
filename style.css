@@ -214,6 +214,50 @@ nav a:active {
   font-weight: bold;
 }
 
+.spells-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.spells-row {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    gap: 6px;
+}
+
+.passive-row {
+    justify-content: center;
+}
+
+.spell-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60px; /* Adjust size as needed */
+}
+
+.spell-slot img {
+    width: 48px;
+    height: 48px;
+    border: 2px solid #333;
+    border-radius: 6px;
+    background-color: #111;
+    object-fit: cover;
+}
+
+.spell-slot p {
+    font-size: 11px;
+    margin-top: 4px;
+    text-align: center;
+    word-wrap: break-word;
+    color: #333; /* Update font color if background is light/dark */
+}
+
 .bebas-neue-regular {
   font-family: "Bebas Neue", sans-serif;
   font-weight: 400;
@@ -368,7 +412,7 @@ nav a:active {
     text-align: center;
   }
 
-  /* Ensure footer doesn’t cover bottom content */
+  /* Ensure footer doesnâ€™t cover bottom content */
   .riot-disclaimer {
     position: relative;
     bottom: 0;
