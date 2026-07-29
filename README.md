@@ -5,3 +5,5 @@ Cranchy's League Calculator was created under Riot Games' "Legal Jibber Jabber" 
 ### To Do:
 
 - Remove all assets (imgs & championstats), and use the official Riot CDN instead.
+- Fix Mega Gnar not showing anything.
+- Improve Champion selection (from the drop-down list) visibility.
