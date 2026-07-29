@@ -4,6 +4,20 @@ window.addEventListener("click", closeChampionsList);
 
 let selectedLevel = 1;
 
+// Spells Champion 1
+let spellNameQ = "";
+let spellNameW = "";
+let spellNameE = "";
+let spellNameR = "";
+let passiveName1 = "";
+
+// Spells Champion 2
+let spellNameQ2 = "";
+let spellNameW2 = "";
+let spellNameE2 = "";
+let spellNameR2 = "";
+let passiveName2 = "";
+
 // Base stats
 let baseHP = 0;
 let baseMP = 0;
@@ -209,6 +223,27 @@ function closeChampionsList(event)
 			document.getElementById("hereMagicResistance").textContent = Math.round(baseSpellBlock + growthSpellBlock * (selectedLevel - 1) * (0.7025 + 0.0175 * (selectedLevel - 1)));
 
 			document.getElementById("hereMovementSpeed").innerHTML = baseMoveSpeed;
+
+			// Spells for Champion Selected 1
+
+			spellNameQ = "";
+			spellNameW = "";
+			spellNameE = "";
+			spellNameR = "";
+			passiveName = "";
+
+			spellNameQ = data.data[name].spells[0].id;
+			spellNameW = data.data[name].spells[1].id;
+			spellNameE = data.data[name].spells[2].id;
+			spellNameR = data.data[name].spells[3].id;
+			passiveName = data.data[name].passive.image.full;
+
+			document.getElementById("spellQ").src = "spell/" + spellNameQ + ".PNG";
+			document.getElementById("spellW").src = "spell/" + spellNameW + ".PNG";
+			document.getElementById("spellE").src = "spell/" + spellNameE + ".PNG";
+			document.getElementById("spellR").src = "spell/" + spellNameR + ".PNG";
+			document.getElementById("spellP").src = "passive/" + passiveName;
+			
 		})
 		.catch(error => console.error(error));
 
@@ -289,6 +324,27 @@ function closeChampionsList(event)
 			document.getElementById("hereMagicResistance2").textContent = Math.round(baseSpellBlock2 + growthSpellBlock2 * (selectedLevel2 - 1) * (0.7025 + 0.0175 * (selectedLevel2 - 1)));
 
 			document.getElementById("hereMovementSpeed2").innerHTML = baseMoveSpeed2;
+
+			// Spells for Champion Selected 2
+			
+			spellNameQ2 = "";
+			spellNameW2 = "";
+			spellNameE2 = "";
+			spellNameR2 = "";
+			passiveName2 = "";
+
+			spellNameQ2 = data.data[name].spells[0].id;
+			spellNameW2 = data.data[name].spells[1].id;
+			spellNameE2 = data.data[name].spells[2].id;
+			spellNameR2 = data.data[name].spells[3].id;
+			passiveName2 = data.data[name].passive.image.full;
+
+			document.getElementById("spellQ2").src = "spell/" + spellNameQ2 + ".PNG";
+			document.getElementById("spellW2").src = "spell/" + spellNameW2 + ".PNG";
+			document.getElementById("spellE2").src = "spell/" + spellNameE2 + ".PNG";
+			document.getElementById("spellR2").src = "spell/" + spellNameR2 + ".PNG";
+			document.getElementById("spellP2").src = "passive/" + passiveName2;
+			
 		})
 		.catch(error => console.error(error));
 
