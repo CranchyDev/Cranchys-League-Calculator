@@ -262,6 +262,11 @@ nav a:active {
     color: #333; /* Update font color if background is light/dark */
 }
 
+.spell-damage-full p {
+    font-size: 32px;
+    color: #000;
+}
+
 .bebas-neue-regular {
   font-family: "Bebas Neue", sans-serif;
   font-weight: 400;
