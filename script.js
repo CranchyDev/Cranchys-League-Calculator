@@ -244,10 +244,10 @@ function closeChampionsList(event)
 			spellNameR = data.data[championName1].spells[3].id;
 			passiveName = data.data[championName1].passive.image.full;
 
-			document.getElementById("spellQ_img").src = "spell/" + spellNameQ + ".PNG";
-			document.getElementById("spellW_img").src = "spell/" + spellNameW + ".PNG";
-			document.getElementById("spellE_img").src = "spell/" + spellNameE + ".PNG";
-			document.getElementById("spellR_img").src = "spell/" + spellNameR + ".PNG";
+			document.getElementById("spellQ_img").src = "spell/" + spellNameQ + ".png";
+			document.getElementById("spellW_img").src = "spell/" + spellNameW + ".png";
+			document.getElementById("spellE_img").src = "spell/" + spellNameE + ".png";
+			document.getElementById("spellR_img").src = "spell/" + spellNameR + ".png";
 			document.getElementById("spellP_img").src = "passive/" + passiveName;
 
 		})
@@ -377,10 +377,10 @@ function closeChampionsList(event)
 			spellNameR2 = data.data[championName2].spells[3].id;
 			passiveName2 = data.data[championName2].passive.image.full;
 
-			document.getElementById("spellQ2_img").src = "spell/" + spellNameQ2 + ".PNG";
-			document.getElementById("spellW2_img").src = "spell/" + spellNameW2 + ".PNG";
-			document.getElementById("spellE2_img").src = "spell/" + spellNameE2 + ".PNG";
-			document.getElementById("spellR2_img").src = "spell/" + spellNameR2 + ".PNG";
+			document.getElementById("spellQ2_img").src = "spell/" + spellNameQ2 + ".png";
+			document.getElementById("spellW2_img").src = "spell/" + spellNameW2 + ".png";
+			document.getElementById("spellE2_img").src = "spell/" + spellNameE2 + ".png";
+			document.getElementById("spellR2_img").src = "spell/" + spellNameR2 + ".png";
 			document.getElementById("spellP2_img").src = "passive/" + passiveName2;
 			
 		})
