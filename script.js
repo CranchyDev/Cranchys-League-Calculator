@@ -2,6 +2,11 @@ window.displayChampions = displayChampions;
 
 window.addEventListener("click", closeChampionsList);
 
+// Champion Names
+let championName1 = "";
+let championName2 = "";
+
+// Selected level of the champion
 let selectedLevel = 1;
 
 // Spells Champion 1
@@ -158,42 +163,42 @@ function closeChampionsList(event)
 		document.getElementById("menu-image").src = "imgs/" + nameDisplay + ".jpg";
 		document.getElementById("dropbtn").innerHTML = "Expand";
 		
-		let name = event.target.innerHTML.replace(/\s+/g, "").replace(/'/g, "").replace(/\./g, ""); // Removes spaces, ' and .
+		championName1 = event.target.innerHTML.replace(/\s+/g, "").replace(/'/g, "").replace(/\./g, ""); // Removes spaces, ' and .
 
 		// For specific cases where capital letters are still left (the .JSON files are very specific).
-		if (name === "ChoGath") name = "Chogath";
-		if (name === "BelVeth") name = "Belveth";
-		if (name === "KhaZix") name = "Khazix";
-		if (name === "Wukong") name = "MonkeyKing";
-		if (name === "VelKoz") name = "Velkoz";
-		if (name === "NunuandWillump") name = "Nunu";
+		if (championName1 === "ChoGath") championName1 = "Chogath";
+		if (championName1 === "BelVeth") championName1 = "Belveth";
+		if (championName1 === "KhaZix") championName1 = "Khazix";
+		if (championName1 === "Wukong") championName1 = "MonkeyKing";
+		if (championName1 === "VelKoz") championName1 = "Velkoz";
+		if (championName1 === "NunuandWillump") championName1 = "Nunu";
 
-		fetch(`championstats/${name}.json`)
+		fetch(`championstats/${championName1}.json`)
 		.then(response => response.json())
 		.then(data => {
-		console.log(data.data[name].stats);
+		// console.log(data.data[championName1].stats);
 
-			baseHP = parseFloat(data.data[name].stats.hp);
-			baseMP = parseFloat(data.data[name].stats.mp);
-			baseMoveSpeed = parseFloat(data.data[name].stats.movespeed);
-			baseArmor = parseFloat(data.data[name].stats.armor);
-			baseSpellBlock = parseFloat(data.data[name].stats.spellblock);
-			baseAttackRange = parseFloat(data.data[name].stats.attackrange);
-			baseHPRegen = parseFloat(data.data[name].stats.hpregen);
-			baseMPRegen = parseFloat(data.data[name].stats.mpregen);
-			baseCrit = parseFloat(data.data[name].stats.crit);
-			baseAttackDamage = parseFloat(data.data[name].stats.attackdamage);
-			baseAttackSpeed = parseFloat(data.data[name].stats.attackspeed);
+			baseHP = parseFloat(data.data[championName1].stats.hp);
+			baseMP = parseFloat(data.data[championName1].stats.mp);
+			baseMoveSpeed = parseFloat(data.data[championName1].stats.movespeed);
+			baseArmor = parseFloat(data.data[championName1].stats.armor);
+			baseSpellBlock = parseFloat(data.data[championName1].stats.spellblock);
+			baseAttackRange = parseFloat(data.data[championName1].stats.attackrange);
+			baseHPRegen = parseFloat(data.data[championName1].stats.hpregen);
+			baseMPRegen = parseFloat(data.data[championName1].stats.mpregen);
+			baseCrit = parseFloat(data.data[championName1].stats.crit);
+			baseAttackDamage = parseFloat(data.data[championName1].stats.attackdamage);
+			baseAttackSpeed = parseFloat(data.data[championName1].stats.attackspeed);
 
-			growthHP = parseFloat(data.data[name].stats.hpperlevel);
-			growthMP = parseFloat(data.data[name].stats.mpperlevel);
-			growthArmor = parseFloat(data.data[name].stats.armorperlevel);
-			growthSpellBlock = parseFloat(data.data[name].stats.spellblockperlevel);
-			growthHPRegen = parseFloat(data.data[name].stats.hpregenperlevel);
-			growthMPRegen = parseFloat(data.data[name].stats.mpregenperlevel);
-			growthCrit = parseFloat(data.data[name].stats.critperlevel);
-			growthAttackDamage = parseFloat(data.data[name].stats.attackdamageperlevel);
-			growthAttackSpeed = parseFloat(data.data[name].stats.attackspeedperlevel);
+			growthHP = parseFloat(data.data[championName1].stats.hpperlevel);
+			growthMP = parseFloat(data.data[championName1].stats.mpperlevel);
+			growthArmor = parseFloat(data.data[championName1].stats.armorperlevel);
+			growthSpellBlock = parseFloat(data.data[championName1].stats.spellblockperlevel);
+			growthHPRegen = parseFloat(data.data[championName1].stats.hpregenperlevel);
+			growthMPRegen = parseFloat(data.data[championName1].stats.mpregenperlevel);
+			growthCrit = parseFloat(data.data[championName1].stats.critperlevel);
+			growthAttackDamage = parseFloat(data.data[championName1].stats.attackdamageperlevel);
+			growthAttackSpeed = parseFloat(data.data[championName1].stats.attackspeedperlevel);
 
 			document.getElementById("hereAttackDamage").textContent = "0";
 			document.getElementById("hereAttackDamage").textContent = Math.round(baseAttackDamage + growthAttackDamage * (selectedLevel - 1) * (0.7025 + 0.0175 * (selectedLevel - 1)));
@@ -232,18 +237,18 @@ function closeChampionsList(event)
 			spellNameR = "";
 			passiveName = "";
 
-			spellNameQ = data.data[name].spells[0].id;
-			spellNameW = data.data[name].spells[1].id;
-			spellNameE = data.data[name].spells[2].id;
-			spellNameR = data.data[name].spells[3].id;
-			passiveName = data.data[name].passive.image.full;
+			spellNameQ = data.data[championName1].spells[0].id;
+			spellNameW = data.data[championName1].spells[1].id;
+			spellNameE = data.data[championName1].spells[2].id;
+			spellNameR = data.data[championName1].spells[3].id;
+			passiveName = data.data[championName1].passive.image.full;
 
-			document.getElementById("spellQ_img").src = "spell/" + spellNameQ + ".png";
-			document.getElementById("spellW_img").src = "spell/" + spellNameW + ".png";
-			document.getElementById("spellE_img").src = "spell/" + spellNameE + ".png";
-			document.getElementById("spellR_img").src = "spell/" + spellNameR + ".png";
+			document.getElementById("spellQ_img").src = "spell/" + spellNameQ + ".PNG";
+			document.getElementById("spellW_img").src = "spell/" + spellNameW + ".PNG";
+			document.getElementById("spellE_img").src = "spell/" + spellNameE + ".PNG";
+			document.getElementById("spellR_img").src = "spell/" + spellNameR + ".PNG";
 			document.getElementById("spellP_img").src = "passive/" + passiveName;
-			
+
 		})
 		.catch(error => console.error(error));
 
@@ -251,17 +256,35 @@ function closeChampionsList(event)
     	.then(response => response.json())
     	.then(data => {
         	// Access the champion directly
-			const champ = data[name];
+			const champ = data[championName1];
 
 			// Line-by-line string formatting
-			document.getElementById("spellP-damage").innerText = `${champ.P[0].name}: ${getFlatDamage(champ.P[0])}`;
-			document.getElementById("spellQ-damage").innerText = `${champ.Q[0].name}: ${getFlatDamage(champ.Q[0])}`;
-			document.getElementById("spellW-damage").innerText = `${champ.W[0].name}: ${getFlatDamage(champ.W[0])}`;
-			document.getElementById("spellE-damage").innerText = `${champ.E[0].name}: ${getFlatDamage(champ.E[0])}`;
-			document.getElementById("spellR-damage").innerText = `${champ.R[0].name}: ${getFlatDamage(champ.R[0])}`;
+			document.getElementById("spellP-damage").innerText = `${champ.P[0].championName1}: ${getFlatDamage(champ.P[0])}`;
+			document.getElementById("spellQ-damage").innerText = `${champ.Q[0].championName1}: ${getFlatDamage(champ.Q[0])}`;
+			document.getElementById("spellW-damage").innerText = `${champ.W[0].championName1}: ${getFlatDamage(champ.W[0])}`;
+			document.getElementById("spellE-damage").innerText = `${champ.E[0].championName1}: ${getFlatDamage(champ.E[0])}`;
+			document.getElementById("spellR-damage").innerText = `${champ.R[0].championName1}: ${getFlatDamage(champ.R[0])}`;
+
+			// Preparation for spell total damage
+			const qRank = Number(document.getElementById("q-rank").value);
+        	const wRank = Number(document.getElementById("w-rank").value);
+        	const eRank = Number(document.getElementById("e-rank").value);
+        	const rRank = Number(document.getElementById("r-rank").value);
+
+        	// Get damage per spell rank
+        	const qDmg = getDamageAtRank(champ.Q[0], qRank);
+        	const wDmg = getDamageAtRank(champ.W[0], wRank);
+        	const eDmg = getDamageAtRank(champ.E[0], eRank);
+        	const rDmg = getDamageAtRank(champ.R[0], rRank);
+
+        	// Calculate and set total damage
+        	const total = qDmg + wDmg + eDmg + rDmg;
+        	document.getElementById("total-spell-damage").innerText = total;
+	
     	});
 
 		return;
+
 	}
 	else if (event.target.classList.contains("selectedChampion2"))
 	{
@@ -272,43 +295,43 @@ function closeChampionsList(event)
 		document.getElementById("menu-image2").src = "imgs/" + nameDisplay + ".jpg";
 		document.getElementById("dropbtn2").innerHTML = "Expand";
 
-		let name = event.target.innerHTML.replace(/\s+/g, "").replace(/'/g, "").replace(/\./g, ""); // Removes spaces, ' and .
+		championName2 = event.target.innerHTML.replace(/\s+/g, "").replace(/'/g, "").replace(/\./g, ""); // Removes spaces, ' and .
 
 		// For specific cases where capital letters are still left (the .JSON files are very specific).
-		if (name === "ChoGath") name = "Chogath";
-		if (name === "BelVeth") name = "Belveth";
-		if (name === "KhaZix") name = "Khazix";
-		if (name === "Wukong") name = "MonkeyKing";
-		if (name === "VelKoz") name = "Velkoz";
-		if (name === "NunuandWillump") name = "Nunu";
+		if (championName2 === "ChoGath") championName2 = "Chogath";
+		if (championName2 === "BelVeth") championName2 = "Belveth";
+		if (championName2 === "KhaZix") championName2 = "Khazix";
+		if (championName2 === "Wukong") championName2 = "MonkeyKing";
+		if (championName2 === "VelKoz") championName2 = "Velkoz";
+		if (championName2 === "NunuandWillump") championName2 = "Nunu";
 
 
-		fetch(`championstats/${name}.json`)
+		fetch(`championstats/${championName2}.json`)
 		.then(response => response.json())
 		.then(data => {
-			 console.log(data.data[name].stats);
+			 console.log(data.data[championName2].stats);
 
-			baseHP2 = parseFloat(data.data[name].stats.hp);
-			baseMP2 = parseFloat(data.data[name].stats.mp);
-			baseMoveSpeed2 = parseFloat(data.data[name].stats.movespeed);
-			baseArmor2 = parseFloat(data.data[name].stats.armor);
-			baseSpellBlock2 = parseFloat(data.data[name].stats.spellblock);
-			baseAttackRange2 = parseFloat(data.data[name].stats.attackrange);
-			baseHPRegen2 = parseFloat(data.data[name].stats.hpregen);
-			baseMPRegen2 = parseFloat(data.data[name].stats.mpregen);
-			baseCrit2 = parseFloat(data.data[name].stats.crit);
-			baseAttackDamage2 = parseFloat(data.data[name].stats.attackdamage);
-			baseAttackSpeed2 = parseFloat(data.data[name].stats.attackspeed);
+			baseHP2 = parseFloat(data.data[championName2].stats.hp);
+			baseMP2 = parseFloat(data.data[championName2].stats.mp);
+			baseMoveSpeed2 = parseFloat(data.data[championName2].stats.movespeed);
+			baseArmor2 = parseFloat(data.data[championName2].stats.armor);
+			baseSpellBlock2 = parseFloat(data.data[championName2].stats.spellblock);
+			baseAttackRange2 = parseFloat(data.data[championName2].stats.attackrange);
+			baseHPRegen2 = parseFloat(data.data[championName2].stats.hpregen);
+			baseMPRegen2 = parseFloat(data.data[championName2].stats.mpregen);
+			baseCrit2 = parseFloat(data.data[championName2].stats.crit);
+			baseAttackDamage2 = parseFloat(data.data[championName2].stats.attackdamage);
+			baseAttackSpeed2 = parseFloat(data.data[championName2].stats.attackspeed);
 
-			growthHP2 = parseFloat(data.data[name].stats.hpperlevel);
-			growthMP2 = parseFloat(data.data[name].stats.mpperlevel);
-			growthArmor2 = parseFloat(data.data[name].stats.armorperlevel);
-			growthSpellBlock2 = parseFloat(data.data[name].stats.spellblockperlevel);
-			growthHPRegen2 = parseFloat(data.data[name].stats.hpregenperlevel);
-			growthMPRegen2 = parseFloat(data.data[name].stats.mpregenperlevel);
-			growthCrit2 = parseFloat(data.data[name].stats.critperlevel);
-			growthAttackDamage2 = parseFloat(data.data[name].stats.attackdamageperlevel);
-			growthAttackSpeed2 = parseFloat(data.data[name].stats.attackspeedperlevel);
+			growthHP2 = parseFloat(data.data[championName2].stats.hpperlevel);
+			growthMP2 = parseFloat(data.data[championName2].stats.mpperlevel);
+			growthArmor2 = parseFloat(data.data[championName2].stats.armorperlevel);
+			growthSpellBlock2 = parseFloat(data.data[championName2].stats.spellblockperlevel);
+			growthHPRegen2 = parseFloat(data.data[championName2].stats.hpregenperlevel);
+			growthMPRegen2 = parseFloat(data.data[championName2].stats.mpregenperlevel);
+			growthCrit2 = parseFloat(data.data[championName2].stats.critperlevel);
+			growthAttackDamage2 = parseFloat(data.data[championName2].stats.attackdamageperlevel);
+			growthAttackSpeed2 = parseFloat(data.data[championName2].stats.attackspeedperlevel);
 
 			document.getElementById("hereAttackDamage2").textContent = "0";
 			document.getElementById("hereAttackDamage2").textContent = Math.round(baseAttackDamage2 + growthAttackDamage2 * (selectedLevel2 - 1) * (0.7025 + 0.0175 * (selectedLevel2 - 1)));
@@ -340,41 +363,58 @@ function closeChampionsList(event)
 			document.getElementById("hereMovementSpeed2").innerHTML = baseMoveSpeed2;
 
 			// Spells for Champion Selected 2
-			
+
 			spellNameQ2 = "";
 			spellNameW2 = "";
 			spellNameE2 = "";
 			spellNameR2 = "";
 			passiveName2 = "";
 
-			spellNameQ2 = data.data[name].spells[0].id;
-			spellNameW2 = data.data[name].spells[1].id;
-			spellNameE2 = data.data[name].spells[2].id;
-			spellNameR2 = data.data[name].spells[3].id;
-			passiveName2 = data.data[name].passive.image.full;
+			spellNameQ2 = data.data[championName2].spells[0].id;
+			spellNameW2 = data.data[championName2].spells[1].id;
+			spellNameE2 = data.data[championName2].spells[2].id;
+			spellNameR2 = data.data[championName2].spells[3].id;
+			passiveName2 = data.data[championName2].passive.image.full;
 
-			document.getElementById("spellQ2_img").src = "spell/" + spellNameQ2 + ".png";
-			document.getElementById("spellW2_img").src = "spell/" + spellNameW2 + ".png";
-			document.getElementById("spellE2_img").src = "spell/" + spellNameE2 + ".png";
-			document.getElementById("spellR2_img").src = "spell/" + spellNameR2 + ".png";
+			document.getElementById("spellQ2_img").src = "spell/" + spellNameQ2 + ".PNG";
+			document.getElementById("spellW2_img").src = "spell/" + spellNameW2 + ".PNG";
+			document.getElementById("spellE2_img").src = "spell/" + spellNameE2 + ".PNG";
+			document.getElementById("spellR2_img").src = "spell/" + spellNameR2 + ".PNG";
 			document.getElementById("spellP2_img").src = "passive/" + passiveName2;
 			
 		})
 		.catch(error => console.error(error));
 
-
 		fetch(`championabilities/championabilities.json`)
     	.then(response => response.json())
     	.then(data => {
         	// Access the champion directly
-			const champ = data[name];
+			const champ = data[championName2];
 
 			// Line-by-line string formatting
-			document.getElementById("spellP2-damage").innerText = `${champ.P[0].name}: ${getFlatDamage(champ.P[0])}`;
-			document.getElementById("spellQ2-damage").innerText = `${champ.Q[0].name}: ${getFlatDamage(champ.Q[0])}`;
-			document.getElementById("spellW2-damage").innerText = `${champ.W[0].name}: ${getFlatDamage(champ.W[0])}`;
-			document.getElementById("spellE2-damage").innerText = `${champ.E[0].name}: ${getFlatDamage(champ.E[0])}`;
-			document.getElementById("spellR2-damage").innerText = `${champ.R[0].name}: ${getFlatDamage(champ.R[0])}`;
+			document.getElementById("spellP2-damage").innerText = `${champ.P[0].championName2}: ${getFlatDamage(champ.P[0])}`;
+			document.getElementById("spellQ2-damage").innerText = `${champ.Q[0].championName2}: ${getFlatDamage(champ.Q[0])}`;
+			document.getElementById("spellW2-damage").innerText = `${champ.W[0].championName2}: ${getFlatDamage(champ.W[0])}`;
+			document.getElementById("spellE2-damage").innerText = `${champ.E[0].championName2}: ${getFlatDamage(champ.E[0])}`;
+			document.getElementById("spellR2-damage").innerText = `${champ.R[0].championName2}: ${getFlatDamage(champ.R[0])}`;
+
+			// Prepartion for spell total damage
+			const qRank = Number(document.getElementById("q2-rank").value);
+        	const wRank = Number(document.getElementById("w2-rank").value);
+        	const eRank = Number(document.getElementById("e2-rank").value);
+        	const rRank = Number(document.getElementById("r2-rank").value);
+
+        	// Get damage per spell rank
+        	const qDmg = getDamageAtRank(champ.Q[0], qRank);
+        	const wDmg = getDamageAtRank(champ.W[0], wRank);
+        	const eDmg = getDamageAtRank(champ.E[0], eRank);
+        	const rDmg = getDamageAtRank(champ.R[0], rRank);
+
+        	// Calculate and set total damage
+        	const total = qDmg + wDmg + eDmg + rDmg;
+        	document.getElementById("total-spell-damage2").innerText = total;
+	
+
     	});
 
 		return;
@@ -383,6 +423,88 @@ function closeChampionsList(event)
 	{
 
 	}
+
+	// If a spell rank was clicked
+	if (event.target.classList.contains("spell-rank-selected"))
+	{
+		fetch(`championabilities/championabilities.json`)
+    	.then(response => response.json())
+    	.then(data => {
+
+			//championName = event.target.innerHTML.replace(/\s+/g, "").replace(/'/g, "").replace(/\./g, ""); // Removes spaces, ' and .
+
+			// For specific cases where capital letters are still left (the .JSON files are very specific).
+			if (championName1 === "ChoGath") championName1 = "Chogath";
+			if (championName1 === "BelVeth") championName1 = "Belveth";
+			if (championName1 === "KhaZix") championName1 = "Khazix";
+			if (championName1 === "Wukong") championName1 = "MonkeyKing";
+			if (championName1 === "VelKoz") championName1 = "Velkoz";
+			if (championName1 === "NunuandWillump") championName1 = "Nunu";
+
+        	// Access the champion directly
+			const champ = data[championName1];
+
+			// Preparation for spell total damage
+			const qRank = Number(document.getElementById("q-rank").value);
+        	const wRank = Number(document.getElementById("w-rank").value);
+        	const eRank = Number(document.getElementById("e-rank").value);
+        	const rRank = Number(document.getElementById("r-rank").value);
+
+        	// Get damage per spell rank
+        	const qDmg = getDamageAtRank(champ.Q[0], qRank);
+        	const wDmg = getDamageAtRank(champ.W[0], wRank);
+        	const eDmg = getDamageAtRank(champ.E[0], eRank);
+        	const rDmg = getDamageAtRank(champ.R[0], rRank);
+
+        	// Calculate and set total damage
+        	const total = qDmg + wDmg + eDmg + rDmg;
+        	document.getElementById("total-spell-damage").innerText = total;
+	
+    	});
+	}
+	
+	if (event.target.classList.contains("spell-rank-selected2"))
+	{
+		fetch(`championabilities/championabilities.json`)
+    	.then(response => response.json())
+    	.then(data => {
+
+			//championName2 = event.target.innerHTML.replace(/\s+/g, "").replace(/'/g, "").replace(/\./g, ""); // Removes spaces, ' and .
+
+			// For specific cases where capital letters are still left (the .JSON files are very specific).
+			if (championName2 === "ChoGath") championName2 = "Chogath";
+			if (championName2 === "BelVeth") championName2 = "Belveth";
+			if (championName2 === "KhaZix") championName2 = "Khazix";
+			if (championName2 === "Wukong") championName2 = "MonkeyKing";
+			if (championName2 === "VelKoz") championName2 = "Velkoz";
+			if (championName2 === "NunuandWillump") championName2 = "Nunu";
+
+        	// Access the champion directly
+			const champ = data[championName2];
+
+			// Preparation for spell total damage
+			const qRank = Number(document.getElementById("q2-rank").value);
+        	const wRank = Number(document.getElementById("w2-rank").value);
+        	const eRank = Number(document.getElementById("e2-rank").value);
+        	const rRank = Number(document.getElementById("r2-rank").value);
+
+        	// Get damage per spell rank
+        	const qDmg = getDamageAtRank(champ.Q[0], qRank);
+        	const wDmg = getDamageAtRank(champ.W[0], wRank);
+        	const eDmg = getDamageAtRank(champ.E[0], eRank);
+        	const rDmg = getDamageAtRank(champ.R[0], rRank);
+
+        	// Calculate and set total damage
+        	const total = qDmg + wDmg + eDmg + rDmg;
+        	document.getElementById("total-spell-damage2").innerText = total;
+	
+    	});
+	}
+	else
+	{
+
+	}
+
 
 	if (event.target !== document.getElementById("dropbtn") && !document.getElementById("championsList").contains(event.target))
 	{
@@ -664,3 +786,26 @@ function getFlatDamage(ability) {
     // Join the array values with slashes: e.g. "50 / 80 / 110 / 140 / 170"
     return flatMod.values.join(' / ');
 }
+
+// Gets the flat damage at each rank of the ability to perform calculations
+function getDamageAtRank(ability, rank) {
+    if (!ability || !ability.modifiers || ability.modifiers.length === 0) return 0;
+    
+    // Grab the values array (e.g. [50, 80, 110, 140, 170])
+    const values = ability.modifiers[0].values;
+    if (!values || values.length === 0) return 0;
+
+    // Rank 1 is index 0, Rank 2 is index 1, etc.
+    const rankIndex = Math.max(0, rank - 1);
+    
+    // Return value at index, or fallback to max rank if out of bounds
+    return values[rankIndex] || values[values.length - 1] || 0;
+}
+
+function calculateSpellDamage()
+{
+
+}
+
+// Specific scripts for specific things
+
