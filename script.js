@@ -176,7 +176,8 @@ function closeChampionsList(event)
 		fetch(`championstats/${championName1}.json`)
 		.then(response => response.json())
 		.then(data => {
-		// console.log(data.data[championName1].stats);
+		//console.log(data.data[championName1].stats);
+		console.log(championName1);
 
 			baseHP = parseFloat(data.data[championName1].stats.hp);
 			baseMP = parseFloat(data.data[championName1].stats.mp);
@@ -259,11 +260,11 @@ function closeChampionsList(event)
 			const champ = data[championName1];
 
 			// Line-by-line string formatting
-			document.getElementById("spellP-damage").innerText = `${champ.P[0].championName1}: ${getFlatDamage(champ.P[0])}`;
-			document.getElementById("spellQ-damage").innerText = `${champ.Q[0].championName1}: ${getFlatDamage(champ.Q[0])}`;
-			document.getElementById("spellW-damage").innerText = `${champ.W[0].championName1}: ${getFlatDamage(champ.W[0])}`;
-			document.getElementById("spellE-damage").innerText = `${champ.E[0].championName1}: ${getFlatDamage(champ.E[0])}`;
-			document.getElementById("spellR-damage").innerText = `${champ.R[0].championName1}: ${getFlatDamage(champ.R[0])}`;
+			document.getElementById("spellP-damage").innerText = `${champ.P[0].name}: ${getFlatDamage(champ.P[0])}`;
+			document.getElementById("spellQ-damage").innerText = `${champ.Q[0].name}: ${getFlatDamage(champ.Q[0])}`;
+			document.getElementById("spellW-damage").innerText = `${champ.W[0].name}: ${getFlatDamage(champ.W[0])}`;
+			document.getElementById("spellE-damage").innerText = `${champ.E[0].name}: ${getFlatDamage(champ.E[0])}`;
+			document.getElementById("spellR-damage").innerText = `${champ.R[0].name}: ${getFlatDamage(champ.R[0])}`;
 
 			// Preparation for spell total damage
 			const qRank = Number(document.getElementById("q-rank").value);
@@ -392,11 +393,11 @@ function closeChampionsList(event)
 			const champ = data[championName2];
 
 			// Line-by-line string formatting
-			document.getElementById("spellP2-damage").innerText = `${champ.P[0].championName2}: ${getFlatDamage(champ.P[0])}`;
-			document.getElementById("spellQ2-damage").innerText = `${champ.Q[0].championName2}: ${getFlatDamage(champ.Q[0])}`;
-			document.getElementById("spellW2-damage").innerText = `${champ.W[0].championName2}: ${getFlatDamage(champ.W[0])}`;
-			document.getElementById("spellE2-damage").innerText = `${champ.E[0].championName2}: ${getFlatDamage(champ.E[0])}`;
-			document.getElementById("spellR2-damage").innerText = `${champ.R[0].championName2}: ${getFlatDamage(champ.R[0])}`;
+			document.getElementById("spellP2-damage").innerText = `${champ.P[0].name}: ${getFlatDamage(champ.P[0])}`;
+			document.getElementById("spellQ2-damage").innerText = `${champ.Q[0].name}: ${getFlatDamage(champ.Q[0])}`;
+			document.getElementById("spellW2-damage").innerText = `${champ.W[0].name}: ${getFlatDamage(champ.W[0])}`;
+			document.getElementById("spellE2-damage").innerText = `${champ.E[0].name}: ${getFlatDamage(champ.E[0])}`;
+			document.getElementById("spellR2-damage").innerText = `${champ.R[0].name}: ${getFlatDamage(champ.R[0])}`;
 
 			// Prepartion for spell total damage
 			const qRank = Number(document.getElementById("q2-rank").value);
@@ -430,8 +431,6 @@ function closeChampionsList(event)
 		fetch(`championabilities/championabilities.json`)
     	.then(response => response.json())
     	.then(data => {
-
-			//championName = event.target.innerHTML.replace(/\s+/g, "").replace(/'/g, "").replace(/\./g, ""); // Removes spaces, ' and .
 
 			// For specific cases where capital letters are still left (the .JSON files are very specific).
 			if (championName1 === "ChoGath") championName1 = "Chogath";
@@ -468,8 +467,6 @@ function closeChampionsList(event)
 		fetch(`championabilities/championabilities.json`)
     	.then(response => response.json())
     	.then(data => {
-
-			//championName2 = event.target.innerHTML.replace(/\s+/g, "").replace(/'/g, "").replace(/\./g, ""); // Removes spaces, ' and .
 
 			// For specific cases where capital letters are still left (the .JSON files are very specific).
 			if (championName2 === "ChoGath") championName2 = "Chogath";
