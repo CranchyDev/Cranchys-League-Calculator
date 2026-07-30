@@ -247,6 +247,20 @@ function closeChampionsList(event)
 		})
 		.catch(error => console.error(error));
 
+		fetch(`championabilities/championabilities.json`)
+    	.then(response => response.json())
+    	.then(data => {
+        	// Access the champion directly
+			const champ = data[name];
+
+			// Line-by-line string formatting
+			document.getElementById("spellP-damage").innerText = `${champ.P[0].name}: ${getFlatDamage(champ.P[0])}`;
+			document.getElementById("spellQ-damage").innerText = `${champ.Q[0].name}: ${getFlatDamage(champ.Q[0])}`;
+			document.getElementById("spellW-damage").innerText = `${champ.W[0].name}: ${getFlatDamage(champ.W[0])}`;
+			document.getElementById("spellE-damage").innerText = `${champ.E[0].name}: ${getFlatDamage(champ.E[0])}`;
+			document.getElementById("spellR-damage").innerText = `${champ.R[0].name}: ${getFlatDamage(champ.R[0])}`;
+    	});
+
 		return;
 	}
 	else if (event.target.classList.contains("selectedChampion2"))
@@ -347,6 +361,21 @@ function closeChampionsList(event)
 			
 		})
 		.catch(error => console.error(error));
+
+
+		fetch(`championabilities/championabilities.json`)
+    	.then(response => response.json())
+    	.then(data => {
+        	// Access the champion directly
+			const champ = data[name];
+
+			// Line-by-line string formatting
+			document.getElementById("spellP2-damage").innerText = `${champ.P[0].name}: ${getFlatDamage(champ.P[0])}`;
+			document.getElementById("spellQ2-damage").innerText = `${champ.Q[0].name}: ${getFlatDamage(champ.Q[0])}`;
+			document.getElementById("spellW2-damage").innerText = `${champ.W[0].name}: ${getFlatDamage(champ.W[0])}`;
+			document.getElementById("spellE2-damage").innerText = `${champ.E[0].name}: ${getFlatDamage(champ.E[0])}`;
+			document.getElementById("spellR2-damage").innerText = `${champ.R[0].name}: ${getFlatDamage(champ.R[0])}`;
+    	});
 
 		return;
 	}
@@ -621,3 +650,17 @@ function compareCalculationsBetweenChampionStats()
 	}
 }
 
+// Helper functions
+
+// Gets the ONLY the flat damage for each ability
+function getFlatDamage(ability) {
+    if (!ability || !ability.modifiers) return "No Flat Damage";
+
+    // Find the modifier where type is "Flat"
+    const flatMod = ability.modifiers.find(m => m.type === "Flat");
+
+    if (!flatMod || !flatMod.values) return "No Flat Damage";
+
+    // Join the array values with slashes: e.g. "50 / 80 / 110 / 140 / 170"
+    return flatMod.values.join(' / ');
+}
